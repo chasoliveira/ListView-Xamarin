@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppListView.MainPage">
+  <StackLayout>
+    <StackLayout>
+      <Label Text="Lista 01"/>
+      <StackLayout HorizontalOptions="FillAndExpand">
+        <Entry Placeholder="Type title" Text="{Binding Title}" HorizontalOptions="FillAndExpand"/>
+        <Entry Placeholder="Type subtitle" Text="{Binding SubTitle}" HorizontalOptions="FillAndExpand"/>
+      </StackLayout>
+      <Button Text="Add To First" Command="{Binding AddToFirstListCommand}"/>
+      <ListView ItemsSource="{Binding List01}" SelectedItem="{Binding CurrentItem}" BackgroundColor="Transparent">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding Title}" Detail="{Binding SubTitle}" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      <Button Text="Remove From First" Command="{Binding RemoveFromFirtListCommand}"/>
+    </StackLayout>
+    <Button Text="Add To Second" Command="{Binding AddToSecondListCommand}"/>
+    <StackLayout>
+      <Label Text="Lista 02"/>
+      <ListView ItemsSource="{Binding List02}" BackgroundColor="Transparent">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding Title}" Detail="{Binding SubTitle}" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </StackLayout>
+</ContentPage>
