@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -23,6 +24,7 @@ namespace AppListView
 
     public class MainViewModel : NotifyPropertyChange
     {
+        public event EventHandler<string> ItemHandled;
         string _title, _subTitle;
         Item _currentItem;
         ObservableCollection<Item> _list01;
@@ -48,13 +50,13 @@ namespace AppListView
         {
             get
             {
-                return _addToFirstListCommand ?? (_addToFirstListCommand = new Command(async () =>
+                return _addToFirstListCommand ?? (_addToFirstListCommand = new Command(() =>
                 {
                     if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(SubTitle))
                         return;
                     List01.Add(new Item { Title = Title, SubTitle = SubTitle });
                     Title = ""; SubTitle = "";
-                    await Message.DisplayAlert("List View", "Item added Successfully.", "OK");
+                    ItemHandled?.Invoke(this, "Item added Successfuly");
                 }));
             }
         }
