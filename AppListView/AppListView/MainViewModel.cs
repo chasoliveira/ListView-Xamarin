@@ -8,6 +8,7 @@ namespace AppListView
     public class NotifyPropertyChange : INotifyPropertyChanged
     {
         #region Notify
+        public IMessage Message { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         public void RaisePropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         #endregion
@@ -16,7 +17,6 @@ namespace AppListView
     {
         string _title;
         string _subtitle;
-
         public string Title { get { return _title; } set { _title = value; RaisePropertyChanged(nameof(Title)); } }
         public string SubTitle { get { return _subtitle; } set { _subtitle = value; RaisePropertyChanged(nameof(SubTitle)); } }
     }
@@ -61,9 +61,10 @@ namespace AppListView
         {
             get
             {
-                return _removeFormBothListCommand ?? (_removeFormBothListCommand = new Command(() =>
+                return _removeFormBothListCommand ?? (_removeFormBothListCommand = new Command(async () =>
                 {
                     List01.Remove(CurrentItem);
+                    await Message.DisplayAlert("List View", "Item Remove Successfully.", "OK");
                 }));
             }
         }

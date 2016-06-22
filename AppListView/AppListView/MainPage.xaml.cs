@@ -2,12 +2,12 @@
 
 namespace AppListView
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, IMessage
     {
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            BindingContext = new MainViewModel() { Message = this};
         }
     }
 }
