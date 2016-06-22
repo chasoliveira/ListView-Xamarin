@@ -56,7 +56,7 @@ namespace AppListView
                         return;
                     List01.Add(new Item { Title = Title, SubTitle = SubTitle });
                     Title = ""; SubTitle = "";
-                    ItemHandled?.Invoke(this, "Item added Successfuly");
+                    ItemHandled?.Invoke(this, "Item added Successfully");
                 }));
             }
         }
