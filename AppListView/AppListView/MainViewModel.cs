@@ -48,11 +48,13 @@ namespace AppListView
         {
             get
             {
-                return _addToFirstListCommand ?? (_addToFirstListCommand = new Command(() =>
+                return _addToFirstListCommand ?? (_addToFirstListCommand = new Command(async () =>
                 {
                     if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(SubTitle))
                         return;
                     List01.Add(new Item { Title = Title, SubTitle = SubTitle });
+                    Title = ""; SubTitle = "";
+                    await Message.DisplayAlert("List View", "Item added Successfully.", "OK");
                 }));
             }
         }
@@ -72,12 +74,13 @@ namespace AppListView
         {
             get
             {
-                return _addToSecondListCommand ?? (_addToSecondListCommand = new Command(() =>
+                return _addToSecondListCommand ?? (_addToSecondListCommand = new Command(async () =>
                 {
                     if (CurrentItem != null)
                     {
                         List02.Add(CurrentItem);
                         CurrentItem = null;
+                        await Message.DisplayAlert("List View", "Item Added to Second List Successfully.", "OK");
                     }
                 }));
             }
