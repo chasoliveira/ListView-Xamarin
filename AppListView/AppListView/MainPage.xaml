@@ -22,10 +22,17 @@
     <Button Text="Add To Second" Command="{Binding AddToSecondListCommand}"/>
     <StackLayout>
       <Label Text="Lista 02"/>
-      <ListView ItemsSource="{Binding List02}" BackgroundColor="Transparent">
+      <ListView ItemsSource="{Binding List02}" BackgroundColor="Transparent" >
         <ListView.ItemTemplate>
           <DataTemplate>
-            <TextCell Text="{Binding Title}" Detail="{Binding SubTitle}" />
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout>
+                  <Label Text="{Binding Title}"/>
+                  <Label Text="{Binding SubTitle}" />
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
